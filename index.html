@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f9e8ed">
+<title>Happy Birthday Amineh ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Vazirmatn:wght@300;400;500;600&display=swap');
+:root{--pink:#efb9c8;--rose:#bd7f95;--cream:#fff8f1;--ink:#765765}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(145deg,#fff8f2,#f8e4eb);font-family:Vazirmatn,sans-serif;color:var(--ink);overflow-x:hidden}
+.page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 12px 28px}
+.scene{position:relative;width:min(1180px,100%);line-height:0;border-radius:22px;overflow:hidden;box-shadow:0 22px 70px #98677c38;border:1px solid #fff}
+.scene img{display:block;width:100%;height:auto}
+.hotspot{position:absolute;border:0;background:transparent;cursor:pointer;border-radius:50%;outline-offset:5px}
+.hotspot:focus-visible{outline:3px solid white}
+.gift-hit{left:34%;top:39%;width:34%;height:47%;border-radius:20px}
+.letter-hit{left:2%;top:45%;width:28%;height:30%;border-radius:18px}
+.wheel-hit{right:2%;top:26%;width:28%;height:48%;border-radius:50%}
+.hint{font-size:14px;color:#9c7181;text-align:center;margin:13px 0 0;line-height:1.8}
+.counter{font:600 13px Vazirmatn,sans-serif;position:absolute;left:50%;bottom:4%;transform:translateX(-50%);background:#fff9f0e8;color:#9e6f80;border:1px solid #e8b8c7;border-radius:30px;padding:8px 17px;white-space:nowrap;box-shadow:0 4px 18px #8e526222;pointer-events:none}
+.controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:15px}
+.pill{border:1px solid #e5b7c4;background:#fffaf5;color:#956b7b;border-radius:99px;padding:10px 17px;font:500 13px Vazirmatn;cursor:pointer;box-shadow:0 5px 18px #bd82921c;transition:.2s}
+.pill:hover{transform:translateY(-2px);background:#fff}
+.modal{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;padding:18px;background:#4d344b66;backdrop-filter:blur(8px)}
+.modal.show{display:flex;animation:fade .25s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.paper{position:relative;width:min(510px,100%);max-height:90vh;overflow:auto;text-align:center;padding:34px 25px 28px;border-radius:25px;background:linear-gradient(145deg,#fffdf8,#fff0f3);border:1px solid #e9bdc9;box-shadow:0 25px 80px #48263d55;line-height:1.9}
+.paper:before{content:"";position:absolute;inset:9px;border:1px solid #e8c2cb;border-radius:18px;pointer-events:none}
+.close{position:absolute;left:17px;top:13px;border:0;background:#f8e4e9;color:#986a7b;width:34px;height:34px;border-radius:50%;font-size:20px;cursor:pointer}
+.paper h2{font:clamp(26px,6vw,36px) 'DM Serif Display',serif;color:#c17f96;margin:5px 0 12px;direction:ltr}
+.paper p{font-size:16px;font-weight:400;color:#806675;margin:7px 0}
+.seal{font-size:26px;color:#d69aaa;margin:6px}
+.wheel-shell{width:min(300px,75vw);aspect-ratio:1;margin:18px auto 10px;position:relative}
+#wheel{width:100%;height:100%;display:block;filter:drop-shadow(0 8px 13px #9b687a33)}
+.pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:2;width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:25px solid #bd7f95}
+.result{min-height:30px;color:#bd7f95;font-weight:600;margin:10px}
+.music-note{font-size:12px;color:#b18a98;margin-top:10px}
+.spark{position:fixed;z-index:12;pointer-events:none;color:#d98da6;animation:float 2s ease-out forwards}
+@keyframes float{to{transform:translate(var(--dx),-100px) rotate(130deg);opacity:0}}
+@media(max-width:600px){.page{padding:10px 7px 20px}.scene{border-radius:13px}.hint{font-size:12px}.counter{font-size:10px;padding:5px 10px;bottom:3%}.paper{padding:30px 18px 24px}.paper p{font-size:15px}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="scene" aria-label="صحنه سورپرایز تولد Amineh">
+    <img src="birthday-scene.png" alt="اتاقی رویایی با تم صورتی، کادوی تولد، پاکت نامه و گردونه شانس">
+    <button class="hotspot gift-hit" id="gift" aria-label="باز کردن کادو با سه بار لمس"></button>
+    <button class="hotspot letter-hit" id="letter" aria-label="باز کردن نامه برای Amineh"></button>
+    <button class="hotspot wheel-hit" id="wheelHit" aria-label="باز کردن گردونه شانس"></button>
+    <div class="counter" id="counter">کادو رو ۳ بار لمس کن ♡</div>
+  </div>
+  <div class="hint">روی کادو، نامه یا گردونه بزن تا سورپرایزها رو کشف کنی ♡</div>
+  <div class="controls">
+    <button class="pill" id="musicBtn">♫ پخش موسیقی</button>
+    <button class="pill" id="letterBtn">✉ باز کردن نامه</button>
+    <button class="pill" id="wheelBtn">✧ گردونه شانس</button>
+  </div>
+  <div class="music-note">یک ملودی بی‌کلام اختصاصی، فقط برای این روز قشنگ</div>
+</main>
+
+<div class="modal" id="letterModal" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+ <section class="paper">
+  <button class="close" data-close aria-label="بستن">×</button>
+  <div class="seal">♡　✧　♡</div>
+  <h2 id="letterTitle">A little letter for you</h2>
+  <p>سلام Amineh، تولدت مبارک! ♡</p>
+  <p>امیدوارم حالت همیشه خوب باشه.</p>
+  <p>می‌دونم این چند وقته حالت یکم خراب بوده،</p>
+  <p>ولی می‌خواستم خوشحالت کنم. 💗</p>
+  <div class="seal">با آرزوی بهترین‌ها برای تو　❀</div>
+ </section>
+</div>
+
+<div class="modal" id="wheelModal" role="dialog" aria-modal="true" aria-labelledby="wheelTitle">
+ <section class="paper">
+  <button class="close" data-close aria-label="بستن">×</button>
+  <h2 id="wheelTitle">گردونه‌ی لبخند ♡</h2>
+  <p>بچرخون ببین این بار سهمت چیه!</p>
+  <div class="wheel-shell"><div class="pointer"></div><canvas id="wheel" width="600" height="600"></canvas></div>
+  <button class="pill" id="spin">بچرخونش ✨</button>
+  <div class="result" id="result" aria-live="polite"></div>
+ </section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function show(id){$(id).classList.add('show')}
+function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('show'))}
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',closeAll));
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeAll()}));
+$('letter').onclick=$('letterBtn').onclick=()=>show('letterModal');
+$('wheelHit').onclick=$('wheelBtn').onclick=()=>show('wheelModal');
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+
+// Gift opens after exactly three taps.
+let taps=0,opened=false;
+$('gift').addEventListener('click',()=>{
+ if(opened)return;
+ taps++;
+ const remaining=3-taps;
+ $('counter').textContent=remaining?`یه بار دیگه... ${remaining} ♡`:'سورپرایزت آماده‌ست! ✨';
+ $('gift').animate([{transform:'scale(1)'},{transform:'scale(1.045) rotate(-1deg)'},{transform:'scale(1)'}],{duration:420,easing:'ease-out'});
+ sparkleBurst();
+ if(taps===3){opened=true;$('counter').textContent='کادوت باز شد! نامه‌ات منتظرته ♡';setTimeout(()=>show('letterModal'),550)}
+});
+function sparkleBurst(){const chars=['✦','♡','✧','❀'];for(let i=0;i<18;i++){const s=document.createElement('span');s.className='spark';s.textContent=chars[Math.random()*chars.length|0];s.style.left=(36+Math.random()*30)+'%';s.style.top=(43+Math.random()*38)+'%';s.style.setProperty('--dx',(Math.random()*180-90)+'px');s.style.animationDuration=(1.2+Math.random())+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2500)}}
+
+// Four-segment wheel.
+const canvas=$('wheel'),ctx=canvas.getContext('2d');
+const labels=['لبخند','لبخند بیشتر','خیلی لبخند','خیلی خیلی لبخند'];
+const fills=['#f8dce2','#fff2e5','#edc1ce','#fff9f1'];let rotation=0,busy=false;
+function drawWheel(){const r=300,arc=2*Math.PI/4;ctx.clearRect(0,0,600,600);
+ labels.forEach((label,i)=>{const a=rotation+i*arc-Math.PI/2;ctx.beginPath();ctx.moveTo(r,r);ctx.arc(r,r,286,a,a+arc);ctx.closePath();ctx.fillStyle=fills[i];ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=7;ctx.stroke();ctx.save();ctx.translate(r,r);ctx.rotate(a+arc/2);ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillStyle='#956b7b';ctx.font='600 27px Vazirmatn';ctx.fillText(label,248,0);ctx.restore()});
+ ctx.beginPath();ctx.arc(r,r,38,0,Math.PI*2);ctx.fillStyle='#fffaf5';ctx.fill();ctx.strokeStyle='#d99eaf';ctx.lineWidth=6;ctx.stroke();ctx.fillStyle='#c17f96';ctx.font='30px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('♡',r,r)}
+drawWheel();
+$('spin').onclick=()=>{if(busy)return;busy=true;$('result').textContent='';const start=rotation,extra=2*Math.PI*(5+Math.random()*3)+Math.random()*2*Math.PI,t0=performance.now(),dur=4300;
+ function frame(now){const p=Math.min(1,(now-t0)/dur),ease=1-Math.pow(1-p,4);rotation=start+extra*ease;drawWheel();if(p<1)requestAnimationFrame(frame);else{busy=false;const arc=Math.PI/2;const pos=((Math.PI/2-rotation)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);const index=Math.floor(pos/arc)%4;$('result').textContent='نتیجه‌ی گردونه: '+labels[index]+'! 💗';sparkleBurst()}}
+ requestAnimationFrame(frame)};
+
+// Original gentle instrumental theme via Web Audio (no copyrighted recording).
+let audio=null,master=null,playing=false,loop=null;
+const melody=[523.25,659.25,783.99,659.25,587.33,698.46,880,698.46,523.25,659.25,783.99,987.77,880,783.99,659.25,587.33];
+function playTone(freq,time,duration,volume){const osc=audio.createOscillator(),gain=audio.createGain(),filter=audio.createBiquadFilter();osc.type='triangle';osc.frequency.value=freq;filter.type='lowpass';filter.frequency.value=2400;gain.gain.setValueAtTime(.0001,time);gain.gain.exponentialRampToValueAtTime(volume,time+.035);gain.gain.exponentialRampToValueAtTime(.0001,time+duration);osc.connect(filter);filter.connect(gain);gain.connect(master);osc.start(time);osc.stop(time+duration+.03)}
+function musicLoop(){const start=audio.currentTime+.08;melody.forEach((n,i)=>{const t=start+i*.42;playTone(n,t,.9,.045);if(i%4===0){playTone(n/2,t,1.4,.018);playTone(n*1.25,t+.04,.55,.009)}});loop=setTimeout(()=>{if(playing)musicLoop()},melody.length*420)}
+$('musicBtn').onclick=async()=>{if(!playing){audio=audio||new(window.AudioContext||window.webkitAudioContext)();if(audio.state==='suspended')await audio.resume();master=audio.createGain();master.gain.value=.7;master.connect(audio.destination);playing=true;musicLoop();$('musicBtn').textContent='Ⅱ توقف موسیقی'}else{playing=false;clearTimeout(loop);await audio.suspend();$('musicBtn').textContent='♫ پخش موسیقی'}};
+</script>
+</body>
+</html>
